@@ -1,0 +1,22 @@
+<h1>Accueil</h1>
+<h2>5 derniers matchs joués</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Équipe 1</th>
+      <th>Équipe 2</th>
+      <th>Date</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recent_matches.each do |match| %>
+      <tr>
+        <td><%= match.home_team.name %></td>
+        <td><%= match.away_team.name %></td>
+        <td><%= l(match.match_date, format: :short) %></td>
+        <td> TODO SCORE </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 

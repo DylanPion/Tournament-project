@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: dylanpion
+  password: # tu peux laisser vide si aucun mot de passe
+  pool: 5
+
+development:
+  <<: *default
+  database: tournament_project_db
+
+test:
+  <<: *default
+  database: tournament_project_db_test
+
+production:
+  <<: *default
+  database: tournament_manager_db_production
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>

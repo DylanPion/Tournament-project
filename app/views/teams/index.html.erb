@@ -1,0 +1,29 @@
+
+<div class="container">
+<h1 class="form-title">List of teams</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Players</th>
+        <th colspan="2"></th>
+        <th>
+            <%= link_to 'New Team', new_team_path, class: "btn-new" %>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.name %></td>
+          <td><%= link_to 'Show Players', team_players_path(team) %></td>
+          <td><%= link_to 'Show', team %></td>
+          <td><%= link_to 'Edit', edit_team_path(team) %></td>
+          <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  
+  </table>
+  </div>

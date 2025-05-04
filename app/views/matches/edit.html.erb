@@ -1,0 +1,44 @@
+<%= form_with(model: @match) do |form| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+      <ul>
+        <% @match.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :match_date, class: "form-label" %>
+    <%= form.datetime_local_field :match_date, class: "form-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :home_team_id, class: "form-label" %>
+    <%= form.collection_select :home_team_id, @teams, :id, :name, { prompt: "Select home team" }, class: "form-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :away_team_id, class: "form-label" %>
+    <%= form.collection_select :away_team_id, @teams, :id, :name, { prompt: "Select away team" }, class: "form-input" %>
+  </div>
+
+  <h3 class="form-label">Result</h3>
+  <%= form.fields_for :result do |result_form| %>
+    <div class="field">
+      <%= result_form.label :home_score, class: "form-label" %>
+      <%= result_form.number_field :home_score, min: 0, class: "form-input" %>
+    </div>
+
+    <div class="field">
+      <%= result_form.label :away_score, class: "form-label" %>
+      <%= result_form.number_field :away_score, min: 0, class: "form-input" %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit class: "form-submit" %>
+  </div>
+<% end %>
